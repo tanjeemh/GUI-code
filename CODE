@@ -1,0 +1,51 @@
+// Created by: Tanjeem Hossain
+// Modified: 3/24/2020
+// making a GUI
+
+
+import hsa.Console; 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class GUI implements ActionListener 
+{
+    int clicks = 0;     //stating variable for the number of clicks the user commits
+    JLabel label = new JLabel("Number of clicks:  0     ");     //the label variable storing the string as the default \'number of clicks: 0\'
+    JFrame frame = new JFrame();     //storing the frame for the panel in the frame variable
+
+    public GUI() 
+    {
+
+        //creating the interactable button
+        JButton button = new JButton("Click Me");     //adding a button that makes a noise when clicked
+        button.addActionListener(this);     //the computer detecting the sound of the click
+
+        //creating the panel and displaying it with the button and label
+        JPanel panel = new JPanel();
+        panel.setBorder(BorderFactory.createEmptyBorder(100, 100, 100, 100));     //creating the lengths and widths of the panel
+        panel.setLayout(new GridLayout(0, 1));
+        panel.add(button);     //adds the clickable button to the display
+        panel.add(label);     //adds the number of clicks counter to the display
+
+        //create frame for panel and display
+        frame.add(panel, BorderLayout.CENTER);     //adding the frame around the panel in the center   
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);     //to close the panel, one must simply force close by hitting X
+        frame.setTitle("GUI");     //naming the panel "GUI" right at the top
+        frame.pack();
+        frame.setVisible(true);     //make the panel visible to the users display screen
+    }
+
+    //counter for number of button clicks increase
+    public void actionPerformed(ActionEvent e) 
+    {
+        clicks++;     //every time the code detects the sound of a click it will add (+1) to the variable that stores the number of clicks
+        label.setText("Number of clicks:  " + clicks);     //outputs the number of clicks to the user
+    }
+
+    // create one Frame
+    public static void main(String[] args) 
+    {
+        new GUI();
+    }
+}
